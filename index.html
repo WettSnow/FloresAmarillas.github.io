@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Para mi niña</title>
+    <title>Ramo de Flores Amarillas</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -89,6 +89,120 @@
             background: radial-gradient(circle, #d97706 0%, #b45309 70%, #78350f 100%);
             box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(120, 53, 15, 0.4);
         }
+
+        /* Ajustes responsive: conserva el diseño original y adapta la composición a móviles */
+        @media (max-width: 640px) {
+            html, body {
+                width: 100%;
+                min-height: 100%;
+                overflow: hidden;
+            }
+
+            body {
+                min-height: 100dvh;
+                height: 100dvh;
+            }
+
+            main {
+                max-width: 440px;
+                height: 100dvh;
+                padding: 0.65rem 0.75rem 0.75rem;
+            }
+
+            #bouquetContainer {
+                width: 100%;
+                height: 75dvh;
+                max-height: 75dvh;
+                min-height: 0;
+                margin-top: auto;
+                margin-bottom: auto;
+            }
+
+            #bouquetSvg {
+                width: 100%;
+                height: 100%;
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            #openLetterBtn {
+                max-width: 100%;
+                min-height: 58px;
+                padding-top: 0.7rem;
+                padding-bottom: 0.7rem;
+            }
+
+            #letterModal {
+                padding: 0.75rem;
+            }
+
+            #letterCard {
+                width: 100%;
+                max-width: 400px;
+                max-height: 88dvh;
+                padding: 1rem;
+                border-radius: 1.35rem;
+            }
+
+            #letterCard .custom-scroll {
+                min-height: 0;
+            }
+
+            #letterCard h2 {
+                font-size: 1.75rem;
+            }
+
+            #letterCard p {
+                font-size: 0.98rem;
+                line-height: 1.55;
+            }
+        }
+
+        /* Teléfonos pequeños: reduce un poco el ramo para dejar aire al botón */
+        @media (max-width: 380px), (max-height: 680px) and (max-width: 640px) {
+            main {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                padding-top: 0.35rem;
+                padding-bottom: 0.5rem;
+            }
+
+            #bouquetContainer {
+                height: 70dvh;
+                max-height: 70dvh;
+            }
+
+            #openLetterBtn {
+                min-height: 54px;
+                padding-left: 0.9rem;
+                padding-right: 0.9rem;
+            }
+
+            #openLetterBtn .w-10 {
+                width: 2.2rem;
+                height: 2.2rem;
+            }
+
+            #openLetterBtn .text-lg {
+                font-size: 1rem;
+            }
+        }
+
+        /* Evita que el modal quede demasiado apretado en teléfonos muy estrechos */
+        @media (max-width: 340px) {
+            #letterCard {
+                padding: 0.85rem;
+            }
+
+            #letterCard h2 {
+                font-size: 1.6rem;
+            }
+
+            #letterCard p {
+                font-size: 0.92rem;
+            }
+        }
+
     </style>
 </head>
 <body class="relative flex flex-col justify-between items-center h-screen w-screen overflow-hidden">
