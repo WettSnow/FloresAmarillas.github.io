@@ -89,117 +89,203 @@
             background: radial-gradient(circle, #d97706 0%, #b45309 70%, #78350f 100%);
             box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.4), 0 4px 10px rgba(120, 53, 15, 0.4);
         }
-
-        /* Ajustes responsive: conserva el diseño original y adapta la composición a móviles */
+    
+        /* ===== Corrección móvil: el botón siempre queda dentro del viewport ===== */
         @media (max-width: 640px) {
             html, body {
                 width: 100%;
+                height: 100%;
                 min-height: 100%;
+                margin: 0;
                 overflow: hidden;
             }
 
             body {
-                min-height: 100dvh;
                 height: 100dvh;
+                min-height: 100dvh;
+                max-height: 100dvh;
             }
 
             main {
+                position: fixed;
+                inset: 0;
+                width: 100%;
                 max-width: 440px;
-                height: 100dvh;
-                padding: 0.65rem 0.75rem 0.75rem;
+                height: 100dvh !important;
+                max-height: 100dvh;
+                min-height: 0 !important;
+                margin: 0 auto;
+                padding: 0.35rem 0.65rem 0.5rem;
+                box-sizing: border-box;
+                display: grid !important;
+                grid-template-rows: minmax(0, 1fr) auto;
+                align-items: stretch;
+                justify-items: center;
+                gap: 0.35rem;
+                overflow: hidden;
             }
 
             #bouquetContainer {
+                grid-row: 1;
                 width: 100%;
-                height: 75dvh;
-                max-height: 75dvh;
-                min-height: 0;
-                margin-top: auto;
-                margin-bottom: auto;
+                height: 100% !important;
+                min-height: 0 !important;
+                max-height: none !important;
+                margin: 0 !important;
+                flex: none !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: hidden;
             }
 
             #bouquetSvg {
+                display: block;
                 width: 100%;
                 height: 100%;
+                min-width: 0;
+                min-height: 0;
                 max-width: 100%;
                 max-height: 100%;
             }
 
             #openLetterBtn {
-                max-width: 100%;
-                min-height: 58px;
-                padding-top: 0.7rem;
-                padding-bottom: 0.7rem;
-            }
-
-            #letterModal {
-                padding: 0.75rem;
-            }
-
-            #letterCard {
                 width: 100%;
-                max-width: 400px;
-                max-height: 88dvh;
-                padding: 1rem;
-                border-radius: 1.35rem;
+                max-width: 340px;
+                min-height: 54px;
+                height: auto;
+                flex-shrink: 0;
+                box-sizing: border-box;
             }
 
-            #letterCard .custom-scroll {
+            /* El contenedor del botón siempre ocupa una fila propia */
+            #openLetterBtn.parent {
                 min-height: 0;
             }
 
-            #letterCard h2 {
-                font-size: 1.75rem;
-            }
-
-            #letterCard p {
-                font-size: 0.98rem;
-                line-height: 1.55;
+            /* El div que contiene el botón */
+            main > div:last-child {
+                grid-row: 2;
+                width: 100%;
+                min-height: 0;
+                padding-bottom: 0.15rem;
+                box-sizing: border-box;
+                flex: none !important;
             }
         }
 
-        /* Teléfonos pequeños: reduce un poco el ramo para dejar aire al botón */
         @media (max-width: 380px), (max-height: 680px) and (max-width: 640px) {
             main {
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-                padding-top: 0.35rem;
-                padding-bottom: 0.5rem;
-            }
-
-            #bouquetContainer {
-                height: 70dvh;
-                max-height: 70dvh;
+                padding: 0.2rem 0.45rem 0.35rem;
+                gap: 0.2rem;
             }
 
             #openLetterBtn {
-                min-height: 54px;
-                padding-left: 0.9rem;
-                padding-right: 0.9rem;
+                min-height: 50px;
+                padding-top: 0.55rem;
+                padding-bottom: 0.55rem;
             }
 
             #openLetterBtn .w-10 {
-                width: 2.2rem;
-                height: 2.2rem;
-            }
-
-            #openLetterBtn .text-lg {
-                font-size: 1rem;
+                width: 2.15rem;
+                height: 2.15rem;
             }
         }
 
-        /* Evita que el modal quede demasiado apretado en teléfonos muy estrechos */
-        @media (max-width: 340px) {
-            #letterCard {
-                padding: 0.85rem;
+
+        /* ===== Móvil con scroll: evita que el botón quede cortado ===== */
+        @media (max-width: 640px) {
+            html {
+                height: auto;
+                min-height: 100%;
             }
 
-            #letterCard h2 {
-                font-size: 1.6rem;
+            html, body {
+                width: 100%;
+                min-height: 100%;
+                height: auto;
+                overflow-x: hidden;
+                overflow-y: auto;
             }
 
-            #letterCard p {
-                font-size: 0.92rem;
+            body {
+                min-height: 100dvh;
+                height: auto;
+                max-height: none;
+            }
+
+            main {
+                position: relative !important;
+                inset: auto !important;
+                width: 100%;
+                max-width: 440px;
+                height: auto !important;
+                min-height: 100dvh !important;
+                max-height: none !important;
+                margin: 0 auto;
+                padding: 0.5rem 0.65rem 1.25rem;
+                box-sizing: border-box;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: flex-start !important;
+                align-items: center;
+                gap: 0;
+                overflow: visible !important;
+            }
+
+            #bouquetContainer {
+                width: 100%;
+                height: 72dvh !important;
+                min-height: 520px;
+                max-height: 700px;
+                margin: 0 auto !important;
+                flex: 0 0 auto !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                overflow: visible;
+            }
+
+            #bouquetSvg {
+                display: block;
+                width: 100%;
+                height: 100%;
+                min-width: 0;
+                min-height: 0;
+                max-width: 100%;
+                max-height: 100%;
+            }
+
+            main > div:last-child {
+                width: 100%;
+                min-height: 0;
+                margin: 0 !important;
+                padding: 0.75rem 0 0 !important;
+                box-sizing: border-box;
+                flex: 0 0 auto !important;
+            }
+
+            #openLetterBtn {
+                display: flex;
+                width: 100%;
+                max-width: 340px;
+                min-height: 58px;
+                height: auto;
+                flex-shrink: 0;
+                box-sizing: border-box;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 380px) {
+            #bouquetContainer {
+                height: 68dvh !important;
+                min-height: 460px;
+            }
+
+            main {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
             }
         }
 
